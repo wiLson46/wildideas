@@ -1,0 +1,242 @@
+/* =========================================================
+   Wild Ideas — Colors & Type
+   Tokens for the entire design system.
+   Import once and use variables everywhere.
+   ========================================================= */
+
+/* ---- FONTS --------------------------------------------- */
+@font-face {
+  font-family: 'Comfortaa';
+  src: url('./fonts/Comfortaa-VariableFont_wght.ttf') format('truetype-variations'),
+       url('./fonts/Comfortaa-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('./fonts/SpaceMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Mono';
+  src: url('./fonts/SpaceMono-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---- BRAND COLORS ---------------------------------- */
+  --wi-red:       #E14658; /* primary accent — "wild" energy */
+  --wi-ink:       #22252C; /* near-black — anchor / bg option */
+  --wi-plum:      #3F3250; /* secondary — considered, premium */
+  --wi-sand:      #C0B3A0; /* warm neutral — paper, sections  */
+
+  /* ---- TINTS & SHADES (derived, harmonious) ---------- */
+  --wi-red-600:   #C83546;
+  --wi-red-400:   #EA6976;
+  --wi-red-200:   #F5B0B7;
+  --wi-red-50:    #FCEAEC;
+
+  --wi-ink-900:   #15171C;
+  --wi-ink-700:   #2E323B;
+  --wi-ink-500:   #4A4F5B;
+  --wi-ink-300:   #8A8E99;
+
+  --wi-plum-600:  #322740;
+  --wi-plum-400:  #564668;
+  --wi-plum-200:  #9B8DAE;
+
+  --wi-sand-400:  #D1C6B5;
+  --wi-sand-200:  #E4DCCE;
+  --wi-sand-100:  #F1ECE2;
+  --wi-sand-50:   #F8F5EF;   /* page bg option */
+
+  /* ---- SURFACE / SEMANTIC ---------------------------- */
+  --wi-bg:          var(--wi-sand-50);
+  --wi-bg-alt:      var(--wi-sand-100);
+  --wi-surface:     #FFFFFF;
+  --wi-surface-alt: var(--wi-sand-100);
+  --wi-surface-dark:var(--wi-ink);
+
+  --wi-fg:         var(--wi-ink);
+  --wi-fg-2:       var(--wi-ink-500);
+  --wi-fg-3:       var(--wi-ink-300);
+  --wi-fg-inv:     var(--wi-sand-50);
+
+  --wi-accent:     var(--wi-red);
+  --wi-accent-fg:  #FFFFFF;
+  --wi-accent-2:   var(--wi-plum);
+
+  --wi-border:     rgba(34, 37, 44, 0.12);
+  --wi-border-2:   rgba(34, 37, 44, 0.24);
+  --wi-border-strong: var(--wi-ink);
+
+  /* ---- STATUS ---------------------------------------- */
+  --wi-success:  #3F7D5B;
+  --wi-warning:  #D89A3E;
+  --wi-danger:   var(--wi-red-600);
+
+  /* ---- FONT FAMILIES --------------------------------- */
+  --wi-font-display: 'Comfortaa', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+  --wi-font-body:    'Comfortaa', ui-rounded, 'SF Pro Rounded', system-ui, sans-serif;
+  --wi-font-mono:    'Space Mono', ui-monospace, Menlo, Consolas, monospace;
+
+  /* ---- TYPE SCALE (fluid-ish, base 16) --------------- */
+  --wi-t-display: 72px;   /* hero */
+  --wi-t-h1:      56px;
+  --wi-t-h2:      40px;
+  --wi-t-h3:      28px;
+  --wi-t-h4:      20px;
+  --wi-t-body:    16px;
+  --wi-t-small:   14px;
+  --wi-t-micro:   12px;
+
+  --wi-lh-tight:  1.05;
+  --wi-lh-snug:   1.2;
+  --wi-lh-normal: 1.5;
+  --wi-lh-loose:  1.7;
+
+  --wi-ls-tight:  -0.02em;
+  --wi-ls-normal:  0;
+  --wi-ls-wide:    0.08em;   /* for mono eyebrows */
+  --wi-ls-caps:    0.14em;   /* for all-caps labels */
+
+  /* ---- SPACING (4px grid) ---------------------------- */
+  --wi-space-1: 4px;
+  --wi-space-2: 8px;
+  --wi-space-3: 12px;
+  --wi-space-4: 16px;
+  --wi-space-5: 24px;
+  --wi-space-6: 32px;
+  --wi-space-7: 48px;
+  --wi-space-8: 64px;
+  --wi-space-9: 96px;
+  --wi-space-10:128px;
+
+  /* ---- RADII (generous, to contrast the logo edges) -- */
+  --wi-r-xs:  6px;
+  --wi-r-sm:  10px;
+  --wi-r-md:  16px;
+  --wi-r-lg:  24px;
+  --wi-r-xl:  32px;
+  --wi-r-2xl: 48px;
+  --wi-r-pill: 999px;
+
+  /* ---- BORDERS --------------------------------------- */
+  --wi-bw-hair:   1px;
+  --wi-bw-thin:   1.5px;
+  --wi-bw-med:    2px;
+  --wi-bw-thick:  3px;
+
+  /* ---- SHADOWS (soft, warm) -------------------------- */
+  --wi-shadow-sm: 0 1px 2px rgba(34,37,44,0.06), 0 1px 3px rgba(34,37,44,0.04);
+  --wi-shadow-md: 0 4px 12px rgba(34,37,44,0.08), 0 2px 4px rgba(34,37,44,0.04);
+  --wi-shadow-lg: 0 16px 40px rgba(34,37,44,0.12), 0 4px 12px rgba(34,37,44,0.06);
+  --wi-shadow-pop:0 10px 0 0 var(--wi-ink);        /* "stamped" offset shadow */
+  --wi-shadow-pop-red: 0 10px 0 0 var(--wi-red);
+
+  /* ---- MOTION ---------------------------------------- */
+  --wi-ease:       cubic-bezier(.22,.61,.36,1);
+  --wi-ease-out:   cubic-bezier(.16,1,.3,1);
+  --wi-ease-bounce:cubic-bezier(.34,1.56,.64,1);
+  --wi-dur-fast:   120ms;
+  --wi-dur-base:   220ms;
+  --wi-dur-slow:   420ms;
+}
+
+/* ---- SEMANTIC ELEMENT STYLES --------------------------- */
+
+.wi-display, h1.wi-display {
+  font-family: var(--wi-font-display);
+  font-weight: 700;
+  font-size: var(--wi-t-display);
+  line-height: var(--wi-lh-tight);
+  letter-spacing: var(--wi-ls-tight);
+  color: var(--wi-fg);
+}
+
+.wi-h1 {
+  font-family: var(--wi-font-display);
+  font-weight: 700;
+  font-size: var(--wi-t-h1);
+  line-height: var(--wi-lh-tight);
+  letter-spacing: var(--wi-ls-tight);
+  color: var(--wi-fg);
+}
+
+.wi-h2 {
+  font-family: var(--wi-font-display);
+  font-weight: 700;
+  font-size: var(--wi-t-h2);
+  line-height: var(--wi-lh-snug);
+  letter-spacing: var(--wi-ls-tight);
+  color: var(--wi-fg);
+}
+
+.wi-h3 {
+  font-family: var(--wi-font-display);
+  font-weight: 600;
+  font-size: var(--wi-t-h3);
+  line-height: var(--wi-lh-snug);
+  color: var(--wi-fg);
+}
+
+.wi-h4 {
+  font-family: var(--wi-font-display);
+  font-weight: 600;
+  font-size: var(--wi-t-h4);
+  line-height: var(--wi-lh-snug);
+  color: var(--wi-fg);
+}
+
+.wi-body {
+  font-family: var(--wi-font-body);
+  font-weight: 400;
+  font-size: var(--wi-t-body);
+  line-height: var(--wi-lh-normal);
+  color: var(--wi-fg);
+}
+
+.wi-small {
+  font-family: var(--wi-font-body);
+  font-size: var(--wi-t-small);
+  line-height: var(--wi-lh-normal);
+  color: var(--wi-fg-2);
+}
+
+.wi-eyebrow,
+.wi-code {
+  font-family: var(--wi-font-mono);
+  font-weight: 400;
+  font-size: var(--wi-t-small);
+  letter-spacing: var(--wi-ls-wide);
+  color: var(--wi-fg-2);
+}
+
+.wi-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: var(--wi-ls-caps);
+  font-weight: 700;
+  color: var(--wi-red);
+}
+
+.wi-code {
+  background: var(--wi-sand-100);
+  color: var(--wi-ink);
+  padding: 2px 8px;
+  border-radius: var(--wi-r-xs);
+}
+
+/* Accent helpers */
+.wi-hl { color: var(--wi-red); }
+.wi-hl-plum { color: var(--wi-plum); }
+.wi-marker {
+  background: linear-gradient(180deg, transparent 55%, var(--wi-red-200) 55%);
+  padding: 0 0.1em;
+}

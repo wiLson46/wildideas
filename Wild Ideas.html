@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Wild Ideas — Portfolio</title>
+  <link rel="stylesheet" href="assets/colors_and_type.css">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--wi-bg);
+      color: var(--wi-fg);
+      font-family: var(--wi-font-body);
+      -webkit-font-smoothing: antialiased;
+      transition: background 420ms ease, color 420ms ease;
+      overflow-x: hidden;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    *:focus-visible {
+      outline: 2px solid var(--wi-red);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+
+    ::selection {
+      background: var(--wi-red);
+      color: #fff;
+    }
+
+    /* Dark theme — overrides applied via [data-theme="dark"] */
+    [data-theme="dark"] {
+      --wi-bg: #15171C;
+      --wi-bg-alt: #1E2129;
+      --wi-surface: #1E2129;
+      --wi-fg: #F1ECE2;
+      --wi-fg-2: #9B9FAA;
+      --wi-fg-3: #6A6E79;
+      --wi-border: rgba(248, 245, 239, 0.12);
+      --wi-border-2: rgba(248, 245, 239, 0.22);
+      --wi-ink: #F1ECE2;
+      /* flip: ink-named shadows become light, pop-shadow uses this */
+      --wi-shadow-pop: 0 10px 0 0 #F1ECE2;
+      --wi-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35), 0 2px 4px rgba(0, 0, 0, 0.25);
+      --wi-shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Marquee animations */
+    @keyframes wi-mq-left {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @keyframes wi-mq-right {
+      from {
+        transform: translateX(-50%);
+      }
+
+      to {
+        transform: translateX(0);
+      }
+    }
+
+    .wi-mq-left {
+      animation: wi-mq-left linear infinite;
+    }
+
+    .wi-mq-right {
+      animation: wi-mq-right linear infinite;
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsive work grid */
+    @media (max-width: 960px) {
+      .wi-work-grid {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wi-work-grid {
+        grid-template-columns: 1fr !important;
+      }
+
+      .wi-nav-logo-text {
+        display: none !important;
+      }
+
+      .wi-footer {
+        padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)) !important;
+      }
+
+      .wi-footer-inner {
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 16px !important;
+        text-align: center;
+      }
+
+      .wi-footer-inner>div {
+        justify-content: center !important;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 380px) {
+
+      /* Extra small screens adjustments */
+      .wi-mq-left,
+      .wi-mq-right {
+        animation-duration: 60s !important;
+        /* slow down for legibility */
+      }
+    }
+
+    /* Nicer native range thumb */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      background: var(--wi-bg-alt);
+      border-radius: 999px;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: var(--wi-red);
+      cursor: pointer;
+      border: 2px solid var(--wi-bg);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: var(--wi-red);
+      cursor: pointer;
+      border: 2px solid var(--wi-bg);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"
+    integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"
+    integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"
+    integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"
+    crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="src/Primitives.jsx"></script>
+  <script type="text/babel" src="src/Marquee.jsx"></script>
+  <script type="text/babel" src="src/Sections.jsx"></script>
+  <script type="text/babel" src="src/Tweaks.jsx"></script>
+
+  <script type="text/babel">
+    const WORK_ITEMS = {
+      en: [
+        {
+          id: 'Relics', client: 'Relics', year: '2025 - WiP', // id: ID único, client: Cliente, year: Año/Estado
+          title: 'A story platform where relics are both loot and key.', // Título o descripción corta
+          outcome: 'Reader, admin panel, and a multi-agent studio with AI', // Resultado o entregables
+          discipline: 'WebApp', // Disciplina o categoría
+          motif: 'W', motifText: 'R', motifColor: '#F8F5EF', // Detalles del motivo visual (tipo, texto y color)
+          cover: 'linear-gradient(135deg, #3F3250 0%, #22252C 100%)' // Fondo visual (gradiente CSS)
+        },
+        {
+          id: 'ComerAr', client: 'Comer.ar', year: '2025 - WiP',
+          title: 'A restaurant ranking where critics earn their link.',
+          outcome: 'Token-gated critics, public voting, and a live leaderboard — all running off Google Sheets.',
+          discipline: 'Web',
+          motif: 'W', motifColor: '#E14658',
+          cover: '#22252C',
+          href: 'https://wilson46.github.io/foodie/'
+        },
+        {
+          id: 'field', client: '?', year: '2026',
+          title: '?',
+          outcome: "A project I can't talk about yet.",
+          discipline: 'Undisclosed',
+          motif: 'grid', motifColor: 'rgba(248,245,239,0.22)',
+          cover: 'linear-gradient(140deg, #E14658 0%, #C83546 100%)'
+        },
+      ],
+      es: [
+        {
+          id: 'Relics', client: 'Relics', year: '2025 - WiP',
+          title: 'Una plataforma narrativa donde las reliquias son botín y llave.',
+          outcome: 'Lector, panel admin y un estudio multi-agente con IA.',
+          discipline: 'WebApp',
+          motif: 'W', motifText: 'R', motifColor: '#F8F5EF',
+          cover: 'linear-gradient(135deg, #3F3250 0%, #22252C 100%)'
+        },
+        {
+          id: 'ComerAr', client: 'Comer.ar', year: '2025 - WiP',
+          title: 'Un ranking de restaurantes donde los críticos llegan con link de un solo uso.',
+          outcome: 'Críticos con token, votación pública y leaderboard en vivo — todo sobre Google Sheets.',
+          discipline: 'Web',
+          motif: 'W', motifColor: '#E14658',
+          cover: '#22252C',
+          href: 'https://wilson46.github.io/foodie/'
+        },
+        {
+          id: 'field', client: '?', year: '2026',
+          title: '?',
+          outcome: 'Un proyecto del que por ahora no se puede hablar',
+          discipline: 'No Revelado',
+          motif: 'grid', motifColor: 'rgba(248,245,239,0.22)',
+          cover: 'linear-gradient(140deg, #E14658 0%, #C83546 100%)'
+        },
+      ],
+    };
+
+    const COPY = {
+      en: {
+        navWork: 'Work', navContact: 'Contact',
+        heroEyebrow: 'Est. 2025',
+        scroll: 'Scroll',
+        workEyebrow: 'Work',
+        workHeadline: ['Some of our favorites.', 'Many more ideas to come.', ''],
+        contactEyebrow: "Let's talk",
+        contactHeadline: ["Let's keep", 'communicating.', 'Stay in touch.'],
+        contactCopy: "A short message is all it takes to start. I'm always happy to chat about new ideas.",
+        startProject: 'Send me a message',
+        formTitle: 'Say hi.',
+        formEyebrow: 'New message',
+        fName: 'Your name', fEmail: 'Email', fMsg: "Leave me a message...",
+        send: 'Send',
+        got: 'Got it.', gotSub: "I'll be in touch soon.",
+        footer: '',
+      },
+      es: {
+        navWork: 'Proyectos', navContact: 'Contacto',
+        heroEyebrow: 'Desde 2025',
+        scroll: 'Scroll',
+        workEyebrow: 'Proyectos',
+        workHeadline: ['Algunos de nuestros favoritos.', 'Muchas ideas más por venir.', ''],
+        contactEyebrow: 'Hablemos',
+        contactHeadline: ['Que haya', 'comunicación.', 'Estemos en contacto.'],
+        contactCopy: 'Un mensaje corto basta para empezar. Me gusta hablar sobre nuevas ideas',
+        startProject: 'Escribime un mensaje',
+        formTitle: 'Saludame.',
+        formEyebrow: 'Nuevo mensaje',
+        fName: 'Tu nombre', fEmail: 'Correo', fMsg: 'Dejame tu mensaje...',
+        send: 'Enviar',
+        got: 'Recibido.', gotSub: 'Te contacto muy pronto.',
+        footer: '',
+      },
+    };
+
+    // Default tweaks
+    const DEFAULTS = /*EDITMODE-BEGIN*/{
+      "accent": "#E14658",
+      "marqueeSpeed": 20,
+      "logoScale": 0.6,
+      "marqueeOn": true
+    }/*EDITMODE-END*/;
+
+    function useTheme() {
+      const [theme, setTheme] = React.useState(() => {
+        const saved = localStorage.getItem('wi-theme');
+        if (saved) return saved;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      });
+      React.useEffect(() => {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('wi-theme', theme);
+      }, [theme]);
+      return [theme, setTheme];
+    }
+
+    function App() {
+      const [theme, setTheme] = useTheme();
+      const [lang, setLang] = React.useState(() => localStorage.getItem('wi-lang') || 'es');
+      React.useEffect(() => {
+        localStorage.setItem('wi-lang', lang);
+        document.documentElement.lang = lang;
+      }, [lang]);
+      const t = COPY[lang];
+
+      const [contactOpen, setContactOpen] = React.useState(false);
+      const [tweaks, setTweaks] = React.useState(DEFAULTS);
+
+      const setTweak = (k, v) => {
+        setTweaks(t => {
+          const next = { ...t, [k]: v };
+          window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [k]: v } }, '*');
+          return next;
+        });
+      };
+
+      // Apply accent color as CSS var override
+      React.useEffect(() => {
+        document.documentElement.style.setProperty('--wi-red', tweaks.accent);
+      }, [tweaks.accent]);
+
+      return (
+        <>
+          <Nav theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} t={t} onContactClick={() => setContactOpen(true)} />
+          <main>
+            <Hero logoScale={tweaks.logoScale} marqueeOn={tweaks.marqueeOn} marqueeSpeed={tweaks.marqueeSpeed} t={t} onContactClick={() => setContactOpen(true)} />
+            <Work items={WORK_ITEMS[lang]} t={t} />
+            <Contact t={t} onContactClick={() => setContactOpen(true)} />
+          </main>
+          <Footer t={t} />
+          <ContactPanel open={contactOpen} onClose={() => setContactOpen(false)} t={t} />
+          <TweaksHost tweaks={tweaks} setTweak={setTweak} />
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('app')).render(<App />);
+  </script>
+</body>
+
+</html>
