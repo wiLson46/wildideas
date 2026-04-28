@@ -579,7 +579,6 @@ const Footer = ({ t }) => {
   const year = new Date().getFullYear();
   return (
     <footer className="wi-footer" style={{
-      paddingTop: 40, paddingBottom: 40, paddingLeft: 24, paddingRight: 24,
       borderTop: '1px solid var(--wi-border)',
     }}>
       <div className="wi-footer-inner" style={{
