@@ -287,6 +287,19 @@ const WorkCard = ({ item, index }) => {
             backgroundSize: '40px 40px',
           }} />
         )}
+        {item.motif === 'img' && (
+          <div style={{
+            width: '70%',
+            transform: hover ? 'scale(1.08) rotate(-3deg)' : 'scale(1)',
+            transition: 'transform 500ms cubic-bezier(.16,1,.3,1)',
+          }}>
+            <img
+              src={item.motifSrc}
+              alt={item.client}
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
+          </div>
+        )}
         <div style={{
           position: 'absolute', top: 14, left: 14,
           fontFamily: 'var(--wi-font-mono)', fontSize: 10,
@@ -338,7 +351,55 @@ const WorkCard = ({ item, index }) => {
   );
 };
 
-const Work = ({ items, t }) => (
+const MiniCard = ({ item }) => {
+  const [hover, setHover] = React.useState(false);
+  const inner = (
+    <div
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={{
+        display: 'flex', flexDirection: 'column',
+        alignItems: 'center', justifyContent: 'center',
+        gap: 14, padding: '28px 20px',
+        background: 'var(--wi-surface)',
+        borderRadius: 'var(--wi-r-lg)',
+        border: '1px solid var(--wi-border)',
+        boxShadow: hover ? '0 8px 0 0 var(--wi-fg)' : '0 4px 0 0 var(--wi-fg)',
+        transform: hover ? 'translateY(-6px)' : 'translateY(0)',
+        transition: 'transform 360ms cubic-bezier(.16,1,.3,1), box-shadow 260ms ease',
+        cursor: item.href ? 'pointer' : 'default',
+        textDecoration: 'none', color: 'inherit',
+      }}
+    >
+      <LogoMark size={36} color="var(--wi-red)" />
+      <span style={{
+        fontFamily: 'var(--wi-font-mono)', fontSize: 11,
+        fontWeight: 700, letterSpacing: '0.14em',
+        textTransform: 'uppercase', color: 'var(--wi-fg-2)',
+      }}>
+        {item.name}
+      </span>
+    </div>
+  );
+  return item.href
+    ? <a href={item.href} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', display: 'block' }}>{inner}</a>
+    : inner;
+};
+
+const MiniWork = ({ items }) => (
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(5, 1fr)',
+    gap: 16,
+    marginTop: 20,
+  }} className="wi-mini-grid">
+    {items.map(it => (
+      <MiniCard key={it.id} item={it} />
+    ))}
+  </div>
+);
+
+const Work = ({ items, miniItems, t }) => (
   <section id="work" style={{
     maxWidth: 1280,
     margin: '0 auto',
@@ -376,6 +437,7 @@ const Work = ({ items, t }) => (
         </Reveal>
       ))}
     </div>
+    {miniItems?.length > 0 && <MiniWork items={miniItems} />}
   </section>
 );
 
@@ -751,4 +813,4 @@ const inputStyle = {
   outline: 'none',
 };
 
-Object.assign(window, { Nav, Hero, Work, WorkCard, Contact, FisheyeGrid, Footer, ContactPanel, ThemePill, LanguagePill });
+Object.assign(window, { Nav, Hero, Work, WorkCard, MiniCard, MiniWork, Contact, FisheyeGrid, Footer, ContactPanel, ThemePill, LanguagePill });

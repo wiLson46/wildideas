@@ -96,11 +96,17 @@
       .wi-work-grid {
         grid-template-columns: 1fr 1fr !important;
       }
+      .wi-mini-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
     }
 
     @media (max-width: 640px) {
       .wi-work-grid {
         grid-template-columns: 1fr !important;
+      }
+      .wi-mini-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
       }
 
       .wi-nav-logo-text {
@@ -188,29 +194,30 @@
     const WORK_ITEMS = {
       en: [
         {
-          id: 'Relics', client: 'Relics', year: '2025 - WiP', // id: ID único, client: Cliente, year: Año/Estado
-          title: 'A story platform where relics are both loot and key.', // Título o descripción corta
-          outcome: 'Reader, admin panel, and a multi-agent studio with AI', // Resultado o entregables
-          discipline: 'WebApp', // Disciplina o categoría
-          motif: 'W', motifText: 'R', motifColor: '#F8F5EF', // Detalles del motivo visual (tipo, texto y color)
-          cover: 'linear-gradient(135deg, #3F3250 0%, #22252C 100%)' // Fondo visual (gradiente CSS)
+          id: 'Relics', client: 'Relics', year: '2025 - WiP',
+          title: 'A story platform where relics are both loot and key.',
+          outcome: 'Reader, admin panel, and a multi-agent studio with AI',
+          discipline: 'WebApp',
+          motif: 'img', motifSrc: 'assets/relics-logo.svg',
+          cover: 'linear-gradient(135deg, #3F3250 0%, #22252C 100%)'
         },
         {
           id: 'ComerAr', client: 'Comer.ar', year: '2025 - WiP',
           title: 'A restaurant ranking where critics earn their link.',
           outcome: 'Token-gated critics, public voting, and a live leaderboard — all running off Google Sheets.',
           discipline: 'Web',
-          motif: 'W', motifColor: '#E14658',
+          motif: 'img', motifSrc: 'assets/comer-logo.png',
           cover: '#22252C',
           href: 'https://wilson46.github.io/foodie/'
         },
         {
-          id: 'field', client: '?', year: '2026',
-          title: '?',
-          outcome: "A project I can't talk about yet.",
-          discipline: 'Undisclosed',
-          motif: 'grid', motifColor: 'rgba(248,245,239,0.22)',
-          cover: 'linear-gradient(140deg, #E14658 0%, #C83546 100%)'
+          id: 'satmeli', client: 'SATMELI', year: '2026 - WIP',
+          title: 'El bot que vigila Mercado Libre mientras vos dormís.',
+          outcome: 'API de Mercado Libre, pings con crono, alertas con bot de Telegram.',
+          discipline: 'WEB',
+          motif: 'W', motifColor: '#FFFFFF',
+          cover: 'linear-gradient(140deg, #E14658 0%, #C83546 100%)',
+          href: 'https://satmeli.online/'
         },
       ],
       es: [
@@ -219,7 +226,7 @@
           title: 'Una plataforma narrativa donde las reliquias son botín y llave.',
           outcome: 'Lector, panel admin y un estudio multi-agente con IA.',
           discipline: 'WebApp',
-          motif: 'W', motifText: 'R', motifColor: '#F8F5EF',
+          motif: 'img', motifSrc: 'assets/relics-logo.svg',
           cover: 'linear-gradient(135deg, #3F3250 0%, #22252C 100%)'
         },
         {
@@ -227,20 +234,29 @@
           title: 'Un ranking de restaurantes donde los críticos llegan con link de un solo uso.',
           outcome: 'Críticos con token, votación pública y leaderboard en vivo — todo sobre Google Sheets.',
           discipline: 'Web',
-          motif: 'W', motifColor: '#E14658',
+          motif: 'img', motifSrc: 'assets/comer-logo.png',
           cover: '#22252C',
           href: 'https://wilson46.github.io/foodie/'
         },
         {
-          id: 'field', client: '?', year: '2026',
-          title: '?',
-          outcome: 'Un proyecto del que por ahora no se puede hablar',
-          discipline: 'No Revelado',
-          motif: 'grid', motifColor: 'rgba(248,245,239,0.22)',
-          cover: 'linear-gradient(140deg, #E14658 0%, #C83546 100%)'
+          id: 'satmeli', client: 'SATMELI', year: '2026 - WIP',
+          title: 'El bot que vigila Mercado Libre mientras vos dormís.',
+          outcome: 'API de Mercado Libre, pings con crono, alertas con bot de Telegram.',
+          discipline: 'WEB',
+          motif: 'W', motifColor: '#FFFFFF',
+          cover: 'linear-gradient(140deg, #E14658 0%, #C83546 100%)',
+          href: 'https://satmeli.online/'
         },
       ],
     };
+
+    const MINI_ITEMS = [
+      { id: 'cvonline', name: 'CVOnline', href: 'https://github.com/wiLson46/CVonline' },
+      { id: 'wip-1', name: 'WIP' },
+      { id: 'wip-2', name: 'WIP' },
+      { id: 'wip-3', name: 'WIP' },
+      { id: 'wip-4', name: 'WIP' },
+    ];
 
     const COPY = {
       en: {
@@ -330,7 +346,7 @@
           <Nav theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} t={t} onContactClick={() => setContactOpen(true)} />
           <main>
             <Hero logoScale={tweaks.logoScale} marqueeOn={tweaks.marqueeOn} marqueeSpeed={tweaks.marqueeSpeed} t={t} onContactClick={() => setContactOpen(true)} />
-            <Work items={WORK_ITEMS[lang]} t={t} />
+            <Work items={WORK_ITEMS[lang]} miniItems={MINI_ITEMS} t={t} />
             <Contact t={t} onContactClick={() => setContactOpen(true)} />
           </main>
           <Footer t={t} />
