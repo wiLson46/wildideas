@@ -11,7 +11,7 @@ function doPost(e) {
       '—\nEnviado desde el formulario de contacto de Wild Ideas';
 
     MailApp.sendEmail({
-      to: 'flashiando@gmail.com',
+      to: 'wildideas.ok@gmail.com',
       subject: subject,
       body: body,
       replyTo: data.email

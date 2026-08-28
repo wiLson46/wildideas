@@ -619,14 +619,14 @@ const Contact = ({ t, onContactClick }) => (
             <MagneticButton variant="primary" onClick={onContactClick} aria-haspopup="dialog">
               {t?.startProject || 'Start a project'} <Icon name="arrow-right" size={16} />
             </MagneticButton>
-            <a href="mailto:flashiando@gmail.com" style={{
+            <a href="mailto:wildideas.ok@gmail.com" style={{
               fontFamily: 'var(--wi-font-mono)', fontSize: 14,
               color: 'var(--wi-bg)', textDecoration: 'none',
               padding: '16px 26px', borderRadius: 999,
               border: '1.5px solid color-mix(in srgb, var(--wi-bg) 24%, transparent)',
               display: 'inline-flex', alignItems: 'center', gap: 10,
             }}>
-              <Icon name="mail" size={16} /> flashiando@gmail.com
+              <Icon name="mail" size={16} /> wildideas.ok@gmail.com
             </a>
           </div>
         </div>
@@ -658,7 +658,7 @@ const Footer = ({ t }) => {
         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 24 }}>
           <a href="https://github.com/wiLson46" style={{ color: 'var(--wi-fg)', textDecoration: 'none' }}>Github ↗</a>
           <a href="https://www.linkedin.com/in/wilsonericsola/" style={{ color: 'var(--wi-fg)', textDecoration: 'none' }}>Linkedin ↗</a>
-          <a href="mailto:flashiando@gmail.com" style={{ color: 'var(--wi-fg)', textDecoration: 'none' }}>Email ↗</a>
+          <a href="mailto:wildideas.ok@gmail.com" style={{ color: 'var(--wi-fg)', textDecoration: 'none' }}>Email ↗</a>
         </div>
       </div>
     </footer>
