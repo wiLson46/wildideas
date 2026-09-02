@@ -656,8 +656,7 @@ const Footer = ({ t }) => {
           <span>© {year} Wild Ideas{t?.footer ? ` · ${t.footer}` : ''}</span>
         </div>
         <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 24 }}>
-          <a href="https://github.com/wiLson46" style={{ color: 'var(--wi-fg)', textDecoration: 'none' }}>Github ↗</a>
-          <a href="https://www.linkedin.com/in/wilsonericsola/" style={{ color: 'var(--wi-fg)', textDecoration: 'none' }}>Linkedin ↗</a>
+          <a href="https://github.com/wildideasok" style={{ color: 'var(--wi-fg)', textDecoration: 'none' }}>Github ↗</a>
           <a href="mailto:wildideas.ok@gmail.com" style={{ color: 'var(--wi-fg)', textDecoration: 'none' }}>Email ↗</a>
         </div>
       </div>
